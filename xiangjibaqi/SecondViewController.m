@@ -14,7 +14,7 @@
 #define SCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
-@interface SecondViewController ()<tViewDelegete>
+@interface SecondViewController ()
 {
     UITableView *_tableview ;
     
@@ -147,6 +147,12 @@
         
             
         }else{
+            
+            
+            if (backImageView.image !=_backImage) {
+                 backImageView.image = _backImage;
+            }
+           
         
             if (offset <-distantY) {// 跟随滚动全速
                 NSLog(@"maxoffset %f",maxoffset);
@@ -213,17 +219,17 @@
     }
     
     cell.model =[dataArr objectAtIndex:indexPath.row];
-    cell.delegate= self;
+
     
-    [cell refresh:^(NSString *name, int age) {
-        NSLog(@"%@, %d",name ,age);
-    }];
+  
     __weak SecondViewController *this =self;
     
-  __block  int  a  = 0 ;
+
     cell.btnClick =^{
-        [this reverBlock];
-        a= 10;
+        
+         [this.navigationController popToRootViewControllerAnimated:YES];
+    
+   
     };
     return cell;
 
@@ -231,7 +237,10 @@
 }
 
 
-
+-(void)dealloc{
+    NSLog(@"%s",__FUNCTION__);
+    [_tableview removeObserver:self forKeyPath:@"contentOffset"];
+}
 
 -(void)reverBlock{
 
@@ -239,6 +248,8 @@
 }
 -(void)btnClicks{
     NSLog(@"%s",__FUNCTION__);
+    
+   
 
 }
 - (void)didReceiveMemoryWarning {

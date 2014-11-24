@@ -69,12 +69,7 @@
     
 
 }
--(void)refresh:(void(^)(NSString *name , int  age))finshblock{
-    NSLog(@"%s",__FUNCTION__);
-    
-    finshblock(@"123",12);
-  
-}
+
 -(void)btnClick:(UIButton *)sender{
     
     
@@ -82,12 +77,9 @@
         self.btnClick();
     }
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(btnClicks)]) {
-         [self.delegate btnClicks];
-    }
+
    
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_model.contentUrl]];
-    NSLog(@"%s",__FUNCTION__);
+
 
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

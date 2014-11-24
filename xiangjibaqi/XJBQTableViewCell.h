@@ -8,11 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "XJBQModel.h"
-@protocol tViewDelegete <NSObject>
 
--(void)btnClicks;
-
-@end
 
 typedef void(^finsh)(NSString *name , int  age);
 @interface XJBQTableViewCell : UITableViewCell
@@ -28,12 +24,11 @@ typedef void(^finsh)(NSString *name , int  age);
 }
 
 @property (nonatomic,strong)XJBQModel *model;
-@property (nonatomic,weak)id<tViewDelegete>delegate;
 
 @property (nonatomic,strong)void(^btnClick)();
 
 +(CGFloat)getCellHeight:(XJBQModel *)model;
--(void)refresh:(finsh)finshblock;
+//-(void)refresh:(finsh)finshblock;
 
 
 @end

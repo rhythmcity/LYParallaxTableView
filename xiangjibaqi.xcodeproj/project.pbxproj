@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA3D6E1A1A23133400CED9F9 /* LYNavanimation.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3D6E191A23133400CED9F9 /* LYNavanimation.m */; };
+		BA3D6E1D1A23138100CED9F9 /* LYNavgation.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3D6E1C1A23138100CED9F9 /* LYNavgation.m */; };
+		BA76801F1A232B31001D526B /* LYPopAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = BA76801E1A232B31001D526B /* LYPopAnimation.m */; };
 		BA8223CB1A0DED98008A4910 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8223CA1A0DED98008A4910 /* main.m */; };
 		BA8223CE1A0DED98008A4910 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8223CD1A0DED98008A4910 /* AppDelegate.m */; };
 		BA8223D11A0DED98008A4910 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8223D01A0DED98008A4910 /* ViewController.m */; };
@@ -61,6 +64,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA3D6E181A23133400CED9F9 /* LYNavanimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYNavanimation.h; sourceTree = "<group>"; };
+		BA3D6E191A23133400CED9F9 /* LYNavanimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYNavanimation.m; sourceTree = "<group>"; };
+		BA3D6E1B1A23138100CED9F9 /* LYNavgation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYNavgation.h; sourceTree = "<group>"; };
+		BA3D6E1C1A23138100CED9F9 /* LYNavgation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYNavgation.m; sourceTree = "<group>"; };
+		BA76801D1A232B31001D526B /* LYPopAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPopAnimation.h; sourceTree = "<group>"; };
+		BA76801E1A232B31001D526B /* LYPopAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYPopAnimation.m; sourceTree = "<group>"; };
 		BA8223C51A0DED98008A4910 /* xiangjibaqi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xiangjibaqi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA8223C91A0DED98008A4910 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA8223CA1A0DED98008A4910 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -200,6 +209,12 @@
 				BA8223D21A0DED98008A4910 /* Main.storyboard */,
 				BA8223D51A0DED98008A4910 /* Images.xcassets */,
 				BA8223D71A0DED98008A4910 /* LaunchScreen.xib */,
+				BA3D6E181A23133400CED9F9 /* LYNavanimation.h */,
+				BA3D6E191A23133400CED9F9 /* LYNavanimation.m */,
+				BA76801D1A232B31001D526B /* LYPopAnimation.h */,
+				BA76801E1A232B31001D526B /* LYPopAnimation.m */,
+				BA3D6E1B1A23138100CED9F9 /* LYNavgation.h */,
+				BA3D6E1C1A23138100CED9F9 /* LYNavgation.m */,
 				BA8223C81A0DED98008A4910 /* Supporting Files */,
 			);
 			path = xiangjibaqi;
@@ -420,11 +435,14 @@
 				BAA476511A0DF6E8009EDCFB /* XJBQTableViewCell.m in Sources */,
 				BAA476541A0DF8FC009EDCFB /* XJBQModel.m in Sources */,
 				BAA475E71A0DEE54009EDCFB /* AFXJBQClient.m in Sources */,
+				BA3D6E1A1A23133400CED9F9 /* LYNavanimation.m in Sources */,
 				BAA476471A0DF394009EDCFB /* UIImage+MultiFormat.m in Sources */,
 				BAA475DF1A0DEE32009EDCFB /* AFJSONUtilities.m in Sources */,
 				BAA475DD1A0DEE32009EDCFB /* AFImageRequestOperation.m in Sources */,
 				BAA4763D1A0DF394009EDCFB /* NSData+ImageContentType.m in Sources */,
 				BAA476461A0DF394009EDCFB /* UIImage+GIF.m in Sources */,
+				BA3D6E1D1A23138100CED9F9 /* LYNavgation.m in Sources */,
+				BA76801F1A232B31001D526B /* LYPopAnimation.m in Sources */,
 				BAA475DC1A0DEE32009EDCFB /* AFHTTPRequestOperation.m in Sources */,
 				BAA476411A0DF394009EDCFB /* SDWebImageDownloader.m in Sources */,
 				BAA4763F1A0DF394009EDCFB /* SDWebImageCompat.m in Sources */,

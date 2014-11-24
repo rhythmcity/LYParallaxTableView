@@ -11,7 +11,8 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (strong, nonatomic) UIImageView *touchImageView;
+@property (assign, nonatomic) CGRect touchFrame; 
 
 @end
 

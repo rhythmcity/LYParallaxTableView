@@ -7,16 +7,28 @@
 //
 
 #import "AppDelegate.h"
-
+#import "LYNavanimation.h"
+#import "LYNavgation.h"
+#import "ViewController.h"
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
-
+@synthesize touchImageView;
+@synthesize touchFrame;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    ViewController  *viewcontroller = [[ViewController alloc] init];
+    
+    
+    LYNavgation *nac = [[LYNavgation alloc] initWithRootViewController:viewcontroller];
+    
+    self.window.rootViewController  = nac;
+    
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

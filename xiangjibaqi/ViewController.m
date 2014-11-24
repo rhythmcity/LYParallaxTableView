@@ -29,7 +29,7 @@
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:keyPath];
     animation.fromValue = from;
     animation.toValue = to;
-    animation.repeatCount = 1;
+    animation.repeatCount = 0.3;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:timing];
     animation.removedOnCompletion = NO;
     animation.fillMode = kCAFillModeForwards;
@@ -43,32 +43,50 @@
     [self.shape removeAllAnimations];
     [self.shape removeFromSuperlayer];
   
-    SecondViewController *second = [[SecondViewController alloc] init];
     
-
-    [self presentViewController:second animated:NO completion:nil];
+  
+  
+    //[self presentViewController:second animated:NO completion:nil];
 
 
 }
--(void)goSecond:(UITapGestureRecognizer *)tap{
+
+-(void)animationdo{
 
     self.shape.transform = CATransform3DMakeScale(0.0, 0.0, 0.0);
-   // self.layer.borderWidth = 0;
+    // self.layer.borderWidth = 0;
     
     CABasicAnimation *scaleAnimation = [self animateKeyPath:@"transform.scale"
                                                   fromValue:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1.0)]
                                                     toValue:[NSValue valueWithCATransform3D:CATransform3DMakeScale(20.0, 20.0, 20.0)]
                                                      timing:kCAMediaTimingFunctionEaseIn];
     
-    CATransition *transition = [CATransition animation];
-    transition.duration = 1;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionFade;
-    transition.delegate  =self;
     
     [self.shape addAnimation:scaleAnimation forKey:@"scaleUp"];
+}
+
+
+
+-(void)goSecond:(UITapGestureRecognizer *)tap{
+   
+   
+  
+
+    UIView *view = tap.view;
+    self.touchView = view;
+    SecondViewController *second = [[SecondViewController alloc] init];
     
-    [self.view.layer addAnimation:transition forKey:@"transiton"];
+    [self.navigationController pushViewController:second animated:YES];
+    
+   // [self animationdo];
+    
+    //    CATransition *transition = [CATransition animation];
+    //    transition.duration = 1;
+    //    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    //    transition.type = kCATransitionFade;
+    //    transition.delegate  =self;
+    
+//    [self.view.layer addAnimation:transition forKey:@"transiton"];
 
 
 }
@@ -76,7 +94,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     
+ 
     icon =  [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 60, 60)];
     icon.backgroundColor = [UIColor clearColor];
     icon.userInteractionEnabled =YES;
@@ -86,6 +106,16 @@
     
     
     [self.view addSubview:icon];
+    
+    
+    UIImageView *imagev = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 60, 60)];
+    [imagev setBackgroundColor:[UIColor redColor]];
+    imagev.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goSecond:)];
+    [imagev addGestureRecognizer:tap1];
+    [self.view addSubview:imagev];
+    
+    
     namelbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 80, 200, 40)];
     
     [self.view addSubview:namelbl];
@@ -113,7 +143,7 @@
         NSLog(@"%@",error);
     }];
     
- [self creatShapeLayer];
+// [self creatShapeLayer];
    
     
 //    NSLog(@"%f,%@",self.radius, NSStringFromCGRect(self.shape.frame));
@@ -132,6 +162,18 @@
     self.shape.path = [UIBezierPath bezierPathWithOvalInRect:(CGRect){0, 0, 60 , 60 }].CGPath;
 }
 
+
+
+-(void)viewDidAppear:(BOOL)animated{
+    NSLog(@"%s",__FUNCTION__);
+
+}
+
+
+-(void)viewWillAppear:(BOOL)animated{
+
+   NSLog(@"%s",__FUNCTION__);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
