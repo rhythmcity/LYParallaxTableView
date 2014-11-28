@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "XJBQModel.h"
-
-
+#import <MediaPlayer/MediaPlayer.h>
+#import "AVPlayerView.h"
 typedef void(^finsh)(NSString *name , int  age);
 @interface XJBQTableViewCell : UITableViewCell
 {
@@ -19,8 +19,10 @@ typedef void(^finsh)(NSString *name , int  age);
     UILabel *contentLabel;
     
     UIButton *btn;
-
-
+    
+    AVPlayerView *playview;
+    MPMoviePlayerViewController *moviePlayerView;
+ 
 }
 
 @property (nonatomic,strong)XJBQModel *model;

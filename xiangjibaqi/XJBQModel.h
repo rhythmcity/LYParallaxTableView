@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <MediaPlayer/MediaPlayer.h>
+#import <AVFoundation/AVFoundation.h>
 @interface XJBQModel : NSObject
 @property (nonatomic,strong)NSString *imageURl;
 @property (nonatomic,strong)NSString *text;
 @property (nonatomic,strong)NSString *contentUrl;
+@property (nonatomic,strong)AVPlayer *moviePlayer;
 @end

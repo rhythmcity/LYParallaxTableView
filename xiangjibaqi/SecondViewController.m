@@ -125,9 +125,9 @@
 {
     if (_tableview) {
         CGFloat offset =   _tableview.contentOffset.y;
-        NSLog(@"offset = = = ==%f",offset);
+    
         int  offSetint = offset;
-        NSLog(@"offSetint = = = ==%d",offSetint);
+    
         if (offset>0) {// 向上模糊效果
         
             NSInteger index = offset / 10;
@@ -182,7 +182,20 @@
             
             model.imageURl = @"http://ishare.ol-img.com/moudlepic/545997c432a14_149.jpg";
             model.text =@"暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回";
-            model.contentUrl =@"https://itunes.apple.com/cn/app/shi-shang-nu-ren-zhi-onlylady/id592994302?mt=8";
+            model.contentUrl =@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
+            
+            if (i%2 == 0) {
+                AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString: model.contentUrl]];
+                model.moviePlayer= [[AVPlayer alloc] initWithPlayerItem:playerItem];
+            }else{
+                NSString *path = [[NSBundle mainBundle] pathForResource:@"Sydney-iPhone" ofType:@"m4v"];
+                
+                NSURL *pathUrl = [NSURL fileURLWithPath:path];
+                AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:pathUrl];
+                model.moviePlayer= [[AVPlayer alloc] initWithPlayerItem:playerItem];
+            
+            }
+           
             [dataArr addObject:model];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -199,7 +212,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    return [XJBQTableViewCell getCellHeight:[dataArr objectAtIndex:indexPath.row]];
+    return 405;
 }
 
 
