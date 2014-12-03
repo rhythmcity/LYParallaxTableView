@@ -14,4 +14,5 @@
 @property (nonatomic,strong)NSString *text;
 @property (nonatomic,strong)NSString *contentUrl;
 @property (nonatomic,strong)AVPlayer *moviePlayer;
+@property (nonatomic,strong)NSString *localUrl;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "JSONKit.h"
+
 #import "UIImageView+WebCache.h"
 #import "SecondViewController.h"
 @interface ViewController ()
@@ -119,29 +119,7 @@
     namelbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 80, 200, 40)];
     
     [self.view addSubview:namelbl];
-    [[AFXJBQClient sharedClient] getPath:@"http://olshow.onlylady.com/index.php?c=LookAPI&a=Default&rd=518" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"responseObject =  =%@",[responseObject objectFromJSONData]);
-        NSDictionary *dic = [responseObject objectFromJSONData];
-        NSDictionary *dedic = [dic objectForKey:@"de"];
-        NSArray *apops = [dedic objectForKey:@"apps"];
-        for (NSDictionary *di in apops) {
-            NSString *image = [di objectForKey:@"aimg"];
-            NSString *aintro = [di objectForKey:@"aintro"];
-            NSString *name = [di objectForKey:@"aname"];
-            NSLog(@"image====%@, intro =====%@, name=====%@",image ,aintro ,name);
-            
-            
-            [icon sd_setImageWithURL:[NSURL URLWithString:image] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                NSLog(@"%@",error);
-            }];
-            namelbl.text = name;
-            
-        }
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error);
-    }];
+
     
 // [self creatShapeLayer];
    

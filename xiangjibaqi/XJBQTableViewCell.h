@@ -10,6 +10,7 @@
 #import "XJBQModel.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "AVPlayerView.h"
+#import "AFNetworking.h"
 typedef void(^finsh)(NSString *name , int  age);
 @interface XJBQTableViewCell : UITableViewCell
 {
@@ -22,6 +23,8 @@ typedef void(^finsh)(NSString *name , int  age);
     
     AVPlayerView *playview;
     MPMoviePlayerViewController *moviePlayerView;
+    
+    AFHTTPRequestOperationManager *manager;
  
 }
 

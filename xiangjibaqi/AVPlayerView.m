@@ -37,19 +37,22 @@
     
     if (self) {
   
-       
+//        AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:contentURL];
+//        self.moviePlayer= [[AVPlayer alloc] initWithPlayerItem:playerItem];
+        
         
         playerLayer = [[AVPlayerLayer alloc] init];
-       
+//        playerLayer.player = self.moviePlayer;
         [playerLayer setFrame:frame];
         [self.layer addSublayer:playerLayer];
-//        self.contentURL = contentURL;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerFinishedPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:playerLayer.player];
     }
 
 
     return self;
 }
+
+
 
 
 -(void)playerFinishedPlaying:(NSNotification *)notify
@@ -77,6 +80,8 @@
 
 -(void)setContentURL:(NSURL *)contentURL{
     _contentURL = contentURL;
+    
+    
     
    
 

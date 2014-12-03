@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AFNetworking.h"
 @interface SecondViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong)UIImage *backImage;//头部背景图片
 @end

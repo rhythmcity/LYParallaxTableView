@@ -8,6 +8,7 @@
 
 #import "XJBQTableViewCell.h"
 #import "UIImageView+WebCache.h"
+#import "LYTool.h"
 #define SCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
@@ -32,7 +33,7 @@
 //        self.contentView.backgroundColor = [UIColor blackColor];
         
        
-        playview = [[AVPlayerView alloc] initWithFrame:CGRectMake(0, 0, 320, 320) ];
+        playview = [[AVPlayerView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
         [self.contentView addSubview:playview];
         playview.tintColor = [UIColor blackColor];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playViewTap:)];
@@ -53,15 +54,16 @@
 
 
 
+
 -(void)setModel:(XJBQModel *)model{
+    
+    
+    [playview.moviePlayer pause];
 
-    _model = model;
-    [playview pause];
-//    playview.contentURL = [NSURL URLWithString:model.contentUrl];
-   
     playview.moviePlayer = model.moviePlayer;
-
-    [playview play];
+    
+    [playview.moviePlayer play];
+    
 }
 
 

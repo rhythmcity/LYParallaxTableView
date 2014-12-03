@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AFXJBQClient.h"
 @interface ViewController : UIViewController
 
 @property (nonatomic,strong)UIView *touchView;

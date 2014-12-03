@@ -9,8 +9,10 @@
 #import "SecondViewController.h"
 #import "XJBQTableViewCell.h"
 #import "XJBQModel.h"
+#import "LYTool.h"
 #import <QuartzCore/QuartzCore.h>
 #import <Accelerate/Accelerate.h>
+#import "AFDownloadRequestOperation.h"
 #define SCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
@@ -29,6 +31,12 @@
     
     CGFloat coverY; // 背景图片超出屏幕距离
     
+    
+    AFHTTPRequestOperationManager *manager;
+    
+    
+    NSMutableSet *downloadset;
+    
    
 }
 //@property (nonatomic ,strong)CIContext *context;
@@ -43,6 +51,10 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 
     if (self) {
+        
+        manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+        
+        downloadset = [[NSMutableSet alloc] init];
    
     }
     return self;
@@ -126,7 +138,7 @@
     if (_tableview) {
         CGFloat offset =   _tableview.contentOffset.y;
     
-        int  offSetint = offset;
+//        int  offSetint = offset;
     
         if (offset>0) {// 向上模糊效果
         
@@ -172,30 +184,62 @@
 
 
 
--(void)getModel{
+-(void)downloadvideo:(NSString *)url andfinsh:(void(^)(NSString *path))finshblock{
 
     
     
+    if ([downloadset containsObject:url]) {
+        return;
+    }
+    
+    [downloadset  addObject:url];
+    
+    NSString *cachePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Private Documents/Cache"];
+    NSFileManager *fileManager=[NSFileManager defaultManager];
+    if(![fileManager fileExistsAtPath:cachePath])
+    {
+        [fileManager createDirectoryAtPath:cachePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+     NSString *path = [cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4",[url md5HexDigest]]];
+    if ([fileManager fileExistsAtPath:path]) {
+        finshblock (path);
+        return;
+    }
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    AFDownloadRequestOperation * operation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:path shouldResume:YES];
+    
+    [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
+        NSLog(@"%f",(float)totalBytesRead/totalBytesExpectedToRead);
+        NSLog(@"totalBytesExpectedToRead %lld" ,totalBytesExpectedToRead);
+        
+    }];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        finshblock(path);
+        
+        [downloadset removeObject:url];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        [fileManager removeItemAtPath:[cachePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.mp4",[url md5HexDigest]]] error:nil];
+        
+    }];
+    [manager.operationQueue addOperation:operation];
+}
+
+-(void)getModel{
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"Sydney-iPhone" ofType:@"m4v"];
+    
+    NSArray *arr  =[NSArray arrayWithObjects:@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4", nil];
+  
+    
+    
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        for (int i = 0; i<10; i++) {
+        for (int i = 0; i<arr.count; i++) {
             XJBQModel *model = [[XJBQModel alloc] init];
-            
-            model.imageURl = @"http://ishare.ol-img.com/moudlepic/545997c432a14_149.jpg";
-            model.text =@"暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回暗示法哈啥地方哈里斯可多活法拉克时间短发贺卡时间短返回拉开收到就好法拉克束带结发回啦是可点击返回";
-            model.contentUrl =@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
-            
-            if (i%2 == 0) {
-                AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString: model.contentUrl]];
-                model.moviePlayer= [[AVPlayer alloc] initWithPlayerItem:playerItem];
-            }else{
-                NSString *path = [[NSBundle mainBundle] pathForResource:@"Sydney-iPhone" ofType:@"m4v"];
-                
-                NSURL *pathUrl = [NSURL fileURLWithPath:path];
-                AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:pathUrl];
-                model.moviePlayer= [[AVPlayer alloc] initWithPlayerItem:playerItem];
-            
-            }
-           
+            model.contentUrl = [arr objectAtIndex:i];
+        
             [dataArr addObject:model];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -231,19 +275,27 @@
         cell.selectionStyle =UITableViewCellSelectionStyleNone;
     }
     
-    cell.model =[dataArr objectAtIndex:indexPath.row];
-
+    
+    XJBQModel *model = [dataArr objectAtIndex:indexPath.row];
+    
+    [self downloadvideo:model.contentUrl andfinsh:^(NSString *path) {
+        
+        model.localUrl = path;
+        if (!model.moviePlayer) {
+            AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:[NSURL fileURLWithPath:model.localUrl]];
+            AVPlayer *player = [[AVPlayer alloc] initWithPlayerItem:playerItem];
+            model.moviePlayer = player;
+        }
+        
+           cell.model = model;
+    
+    }];
+    
     
   
-    __weak SecondViewController *this =self;
+
     
 
-    cell.btnClick =^{
-        
-         [this.navigationController popToRootViewControllerAnimated:YES];
-    
-   
-    };
     return cell;
 
 
@@ -374,4 +426,6 @@
     
     return returnImage;
 }
+
 @end
+
