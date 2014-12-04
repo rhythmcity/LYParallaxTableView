@@ -191,12 +191,7 @@
 -(void)downloadvideo:(NSString *)url andfinsh:(void(^)(NSString *path))finshblock{
 
     
-    
-    if ([downloadset containsObject:url]) {
-        return;
-    }
-    
-    [downloadset  addObject:url];
+
     
     NSString *cachePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Private Documents/Cache"];
     NSFileManager *fileManager=[NSFileManager defaultManager];
@@ -209,6 +204,13 @@
         finshblock (path);
         return;
     }
+    
+    if ([downloadset containsObject:url]) {
+        return;
+    }
+    
+    [downloadset  addObject:url];
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     AFDownloadRequestOperation * operation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:path shouldResume:YES];
     
