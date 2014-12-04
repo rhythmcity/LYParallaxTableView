@@ -39,7 +39,7 @@
   
 //        AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:contentURL];
 //        self.moviePlayer= [[AVPlayer alloc] initWithPlayerItem:playerItem];
-        
+        self.backgroundColor  = [UIColor blackColor];
         
         playerLayer = [[AVPlayerLayer alloc] init];
 //        playerLayer.player = self.moviePlayer;
@@ -96,7 +96,7 @@
     self.isPlaying = NO;
 }
 -(void)pause{
-     self.isPlaying = NO;
+self.isPlaying = NO;
 [self.moviePlayer pause];
 
 }

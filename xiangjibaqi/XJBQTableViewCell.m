@@ -35,6 +35,8 @@
        
         playview = [[AVPlayerView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
         [self.contentView addSubview:playview];
+        
+        _playview = playview;
         playview.tintColor = [UIColor blackColor];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playViewTap:)];
         [playview addGestureRecognizer:tap];
@@ -70,11 +72,16 @@
 -(void)playViewTap:(UITapGestureRecognizer *)tap{
 
     
-    if (playview.isPlaying) {
-        [playview pause];
-    }else{
-        [playview play];
+    if (self.playOrPause) {
+        self.playOrPause(self);
     }
+    
+    
+//    if (playview.isPlaying) {
+//        [playview pause];
+//    }else{
+//        [playview play];
+//    }
 }
 
 

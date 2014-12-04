@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		43FA2F936EE8DFC0703E6EBE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C4993C5E485A780D2C2F53 /* libPods.a */; };
+		BA1C44BB1A30116400B52CD1 /* LYAVPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1C44BA1A30116400B52CD1 /* LYAVPlayer.m */; };
 		BA3D6E1A1A23133400CED9F9 /* LYNavanimation.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3D6E191A23133400CED9F9 /* LYNavanimation.m */; };
 		BA3D6E1D1A23138100CED9F9 /* LYNavgation.m in Sources */ = {isa = PBXBuildFile; fileRef = BA3D6E1C1A23138100CED9F9 /* LYNavgation.m */; };
 		BA76801F1A232B31001D526B /* LYPopAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = BA76801E1A232B31001D526B /* LYPopAnimation.m */; };
@@ -60,6 +61,8 @@
 		27C4993C5E485A780D2C2F53 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		786C3E8767FF48E48FE75670 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		ADDAC1BBFB2411026DED016F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		BA1C44B91A30116300B52CD1 /* LYAVPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAVPlayer.h; sourceTree = "<group>"; };
+		BA1C44BA1A30116400B52CD1 /* LYAVPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAVPlayer.m; sourceTree = "<group>"; };
 		BA3D6E181A23133400CED9F9 /* LYNavanimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYNavanimation.h; sourceTree = "<group>"; };
 		BA3D6E191A23133400CED9F9 /* LYNavanimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYNavanimation.m; sourceTree = "<group>"; };
 		BA3D6E1B1A23138100CED9F9 /* LYNavgation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYNavgation.h; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 				BA3D6E1C1A23138100CED9F9 /* LYNavgation.m */,
 				BAFE83551A286A77000AB867 /* AVPlayerView.h */,
 				BAFE83561A286A77000AB867 /* AVPlayerView.m */,
+				BA1C44B91A30116300B52CD1 /* LYAVPlayer.h */,
+				BA1C44BA1A30116400B52CD1 /* LYAVPlayer.m */,
 				BAFE83531A286744000AB867 /* Sydney-iPhone.m4v */,
 				BA8223C81A0DED98008A4910 /* Supporting Files */,
 				BAC2D51B1A2F02A100EFD6B5 /* LYTool.h */,
@@ -454,6 +459,7 @@
 				BA8223CB1A0DED98008A4910 /* main.m in Sources */,
 				BAA4764A1A0DF394009EDCFB /* UIImageView+WebCache.m in Sources */,
 				BAC2D5201A2F17DD00EFD6B5 /* AFDownloadRequestOperation.m in Sources */,
+				BA1C44BB1A30116400B52CD1 /* LYAVPlayer.m in Sources */,
 				BAFE83571A286A77000AB867 /* AVPlayerView.m in Sources */,
 				BAA476481A0DF394009EDCFB /* UIImage+WebP.m in Sources */,
 				BAC2D51D1A2F02A100EFD6B5 /* LYTool.m in Sources */,

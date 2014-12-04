@@ -13,6 +13,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <Accelerate/Accelerate.h>
 #import "AFDownloadRequestOperation.h"
+
+#import "LYAVPlayer.h"
 #define SCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
@@ -36,6 +38,8 @@
     
     
     NSMutableSet *downloadset;
+    
+    AVPlayer *_currentPlayer;
     
    
 }
@@ -273,33 +277,136 @@
     if (!cell) {
         cell=[[XJBQTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:indefider];
         cell.selectionStyle =UITableViewCellSelectionStyleNone;
+        
+        
+        cell.playOrPause =^(XJBQTableViewCell *xjbqcell){
+            
+            
+            if (_currentPlayer == xjbqcell.playview.moviePlayer) {
+                
+                
+                if (xjbqcell.playview.isPlaying) {
+                    [xjbqcell.playview pause];
+                }else{
+                    
+                    [xjbqcell.playview play];
+                }
+                
+            }else{
+                
+               [_currentPlayer pause];
+               _currentPlayer = xjbqcell.playview.moviePlayer;
+               [_currentPlayer play];
+            
+            }
+            
+            
+            
+            
+           
+        };
     }
     
     
     XJBQModel *model = [dataArr objectAtIndex:indexPath.row];
     
-    [self downloadvideo:model.contentUrl andfinsh:^(NSString *path) {
-        
-        model.localUrl = path;
-        if (!model.moviePlayer) {
-            AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:[NSURL fileURLWithPath:model.localUrl]];
-            AVPlayer *player = [[AVPlayer alloc] initWithPlayerItem:playerItem];
-            model.moviePlayer = player;
-        }
-        
-           cell.model = model;
     
-    }];
+    
+    if (!model.moviePlayer) {
+        if(tableView.dragging == NO && tableView.decelerating == NO)
+        {
+            [self downloadvideo:model.contentUrl andfinsh:^(NSString *path) {
+                
+                model.localUrl = path;
+                
+                
+                if (!model.moviePlayer) {
+                    
+                    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:[NSURL fileURLWithPath:model.localUrl]];
+                    AVPlayer *player = [[AVPlayer alloc] initWithPlayerItem:playerItem];
+                    model.moviePlayer = player;
+                }
+                   cell.model = model;
+                
+                }];
+            
+          
+
+        }
+     
+    }else{
+        
+    
+        
+//           cell.model = model;
+    
+    
     
     
   
-
+    }
     
 
     return cell;
 
 
 }
+
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if(!decelerate){
+        [self loadVideoForOnscreenRows];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadVideoForOnscreenRows];
+}
+
+// 装载图片举例
+- (void)loadVideoForOnscreenRows
+{
+//    if([self.entries count] > 0)
+//    {
+    
+    [_currentPlayer pause];
+        NSArray *visiblePaths = [_tableview indexPathsForVisibleRows];
+        for(NSIndexPath *indexPath in visiblePaths)
+        {
+            
+            
+             XJBQModel *model = [dataArr objectAtIndex:indexPath.row];
+            if (!model.moviePlayer) {
+                [self downloadvideo:model.contentUrl andfinsh:^(NSString *path) {
+                    model.localUrl = path;
+                    if (!model.moviePlayer) {
+                        AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:[NSURL fileURLWithPath:model.localUrl]];
+                        AVPlayer *player = [[AVPlayer alloc] initWithPlayerItem:playerItem];
+                        model.moviePlayer = player;
+                    }
+                    XJBQTableViewCell *cell = (XJBQTableViewCell *)[_tableview cellForRowAtIndexPath:indexPath];
+                    [cell setModel:model];
+                }];
+            }
+            
+            XJBQTableViewCell *cell = (XJBQTableViewCell *)[_tableview cellForRowAtIndexPath:indexPath];
+            CGRect rect = [cell convertRect:cell.playview.frame toView:self.view];
+            if (CGRectContainsRect(self.view.frame, rect)) {
+                _currentPlayer = cell.playview.moviePlayer;
+                [cell.playview play];
+            }else{
+                
+                [cell.playview pause];
+            }
+        }
+
+}
+
+
+
+
 
 
 -(void)dealloc{

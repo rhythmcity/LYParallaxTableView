@@ -23,17 +23,19 @@ typedef void(^finsh)(NSString *name , int  age);
     
     AVPlayerView *playview;
     MPMoviePlayerViewController *moviePlayerView;
-    
     AFHTTPRequestOperationManager *manager;
- 
 }
+@property (nonatomic , strong)AVPlayerView *playview;
 
 @property (nonatomic,strong)XJBQModel *model;
 
 @property (nonatomic,strong)void(^btnClick)();
 
+@property (nonatomic,strong)void(^playOrPause)(XJBQTableViewCell *xjbqcell);
 +(CGFloat)getCellHeight:(XJBQModel *)model;
 //-(void)refresh:(finsh)finshblock;
+
+
 
 
 @end
